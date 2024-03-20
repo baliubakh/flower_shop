@@ -1,0 +1,10 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: "";
+}

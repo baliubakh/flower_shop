@@ -1,0 +1,65 @@
+@import "../../../../variables.module.scss";
+
+.wrapper {
+  padding: 46px 120px;
+  border-radius: 5px;
+}
+
+.inner {
+  padding: 50px;
+  background-color: $white;
+}
+
+.productContentWrapper {
+  display: flex;
+  gap: 60px;
+}
+
+.productImage {
+  position: relative;
+  width: 326px;
+  height: 356px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid $grey;
+}
+
+.productInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.productInfoTitle {
+  font-size: $titleSmall;
+  color: $black;
+  font-weight: 400;
+}
+
+.productCategory {
+  margin-top: 8px;
+  font-size: $titleSmall;
+  color: $grey90;
+  line-height: 35px;
+  font-weight: 400;
+}
+
+.productDescription {
+  margin-top: 22px;
+  font-size: $titleSmall;
+  color: $grey70;
+  line-height: 35px;
+}
+
+.productBottomInfoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.productPrice {
+  font-size: $titleSmall;
+  color: $black;
+}

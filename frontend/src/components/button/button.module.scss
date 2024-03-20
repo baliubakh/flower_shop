@@ -1,0 +1,40 @@
+@import "../../variables.module.scss";
+
+.customBtn {
+  font-weight: 400;
+  border: 0;
+  outline: none;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandColor1 {
+  background-color: $brand-color-1;
+  color: $white;
+}
+
+.small {
+  padding: 9px 20px;
+  font-size: $subtitle;
+  line-height: 21px;
+}
+
+.medium {
+  padding: 9px 16px;
+  font-size: $body-large;
+  line-height: 23px;
+}
+
+.large {
+  padding: 16px;
+}
+
+.iconWrapper {
+  width: 20px;
+  display: flex;
+  align-items: center;
+}

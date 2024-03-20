@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum Role {
+  user
+  admin
+}
+
+model User {
+  id            Int     @id @default(autoincrement())
+  email         String  @unique
+  phone         String  @default("")
+  gender        Gender  @default(male)
+  photo         String  @default("")
+  first_name    String
+  last_name     String
+  address       String  @default("")
+  state         String  @default("")
+  city          String  @default("")
+  zipcode       String  @default("")
+  password      String
+  refresh_token String  @default("")
+  role          Role    @default(user)
+  is_active     Boolean @default(true)
+
+  orders   Order[]
+  cart     Cart?
+  products Product[]
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  total_price Int
+  cart        Cart     @relation(fields: [cart_id], references: [id])
+  cart_id     Int      @unique
+  customer    User     @relation(fields: [customer_id], references: [id])
+  customer_id Int
+  is_active   Boolean  @default(true)
+}
+
+model Cart {
+  id          Int     @id @default(autoincrement())
+  customer    User    @relation(fields: [customer_id], references: [id])
+  customer_id Int     @unique
+  cartObj     Json
+  is_active   Boolean @default(true)
+  orders      Order?
+}
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  user        User    @relation(fields: [user_id], references: [id])
+  user_id     Int
+  name        String
+  category    String  @default("")
+  description String
+  price       Int     @default(0)
+  quantity    Int     @default(0)
+  photo       String  @default("")
+  is_active   Boolean @default(true)
+}

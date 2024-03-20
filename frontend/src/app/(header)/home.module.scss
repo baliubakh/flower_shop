@@ -1,0 +1,95 @@
+@import "../../variables.module.scss";
+
+.pageWrapper {
+  flex: 1;
+}
+
+.headerWrapper {
+  background-color: $grey;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  padding: 73px 120px;
+}
+
+.welcomeWrapper {
+  display: flex;
+  gap: 26px;
+}
+.welcomeTitle {
+  font-size: $mainTitle;
+  font-weight: 400;
+}
+
+.welcomeSubtitle {
+  color: $grey70;
+  font-size: $body-large;
+  font-weight: 400;
+  margin-block: 36px 46px;
+}
+
+.welcomeBtn {
+  width: fit-content;
+}
+
+.welcomeImagesWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.welcomeImage {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bestSellersWrapper {
+  margin-top: 116px;
+}
+
+.sectionTitle {
+  font-size: $title;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+
+  &::after,
+  &::before {
+    content: "";
+    display: inline-block;
+
+    width: 165px;
+    height: 2px;
+    background-color: $grey50;
+  }
+}
+
+.bestSellerSlider {
+  margin-top: 33px;
+}
+
+.findUsWrapper {
+  margin-top: 33px;
+}
+
+.mapWrapper {
+  margin-top: 33px;
+  position: relative;
+  //   width: 700px;
+  text-align: center;
+}
+.map {
+  height: 500px;
+  position: "absolute";
+  top: 0;
+  bottom: 0;
+  width: "100%";
+}

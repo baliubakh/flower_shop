@@ -1,0 +1,40 @@
+@import "../../../../../variables.module.scss";
+
+.wrapper {
+  padding: 23px 63px 96px;
+  display: flex;
+  gap: 66px;
+}
+
+.photoUpload {
+  position: relative;
+  overflow: hidden;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.photoUploadWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  gap: 12px;
+}
+
+.uploadText {
+  font-size: $subtitle;
+  color: $brand-color-1;
+}
+
+.inputsWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.inputsRow {
+  display: flex;
+  gap: 30px;
+}

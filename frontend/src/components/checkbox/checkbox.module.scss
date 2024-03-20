@@ -1,0 +1,49 @@
+@import "../../variables.module.scss";
+
+.wrapper {
+  margin-top: 23px;
+}
+
+.input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+
+  &:checked + label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+  color: $grey50;
+  font-size: $subtitle;
+  font-weight: 400;
+
+  &:before {
+    content: "";
+    -webkit-appearance: none;
+
+    width: 16px;
+    height: 16px;
+    background-color: $grey70;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+}

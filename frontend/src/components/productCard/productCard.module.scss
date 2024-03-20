@@ -1,0 +1,77 @@
+@import "../../variables.module.scss";
+
+.card {
+  position: relative;
+  background-color: $white;
+  border-radius: 5px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    & > div:first-child {
+      display: flex;
+    }
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 230px;
+  position: relative;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: $titleSmall;
+  color: $black;
+}
+
+.category {
+  font-size: $body-large;
+  color: $grey80;
+}
+
+.infoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoItem {
+  color: $grey70;
+  font-size: $subtitle;
+}
+
+.cartWrapper {
+  color: $brand-color-1;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.cartIcon {
+  width: 20px;
+}
+.changeIcons {
+  position: absolute;
+  right: 18px;
+
+  display: none;
+  gap: 8px;
+  color: $brand-color-1;
+}
+
+.changeIconItem {
+  z-index: 2;
+
+  width: 20px;
+  cursor: pointer;
+}

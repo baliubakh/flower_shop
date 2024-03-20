@@ -1,0 +1,57 @@
+// COLORS
+
+$white: #ffffff;
+$black: #000000;
+
+$grey: #f2f2f2;
+$grey90: #353b48;
+$grey80: #54595e;
+$grey70: #838383;
+$grey60: #e5e5e5;
+$grey50: #d9d9d9;
+$footer: #454545;
+$warning: #c23616;
+$brand-color-1: #ff8f52;
+
+// FONT-SIZES
+
+$mainTitle: 60px;
+$title: 32px;
+$subtitle: 18px;
+$body-default: 14px;
+$body-extra-large: 28px;
+$body-large: 20px;
+$titleSmall: 22px;
+
+// SHADOWS
+
+$drop: 0px 20px 20px 0px rgba(0, 0, 0, 0.08),
+  0px 0px 2px 0px rgba(0, 0, 0, 0.12);
+
+//EXPORT
+:export {
+  // COLORS
+  white: $white;
+  black: $black;
+  grey: $grey;
+  grey50: $grey50;
+  grey60: $grey60;
+  grey70: $grey70;
+  grey80: $grey80;
+  grey90: $grey90;
+  footer: $footer;
+  warning: $warning;
+  brandColor1: $brand-color-1;
+
+  // FONT SIZES
+  mainTitle: $mainTitle;
+  title: $title;
+  subtitle: $subtitle;
+  bodyDefault: $body-default;
+  bodyExtraLarge: $body-extra-large;
+  bodyLarge: $body-large;
+  titleSmall: $titleSmall;
+
+  //SHADOWS
+  drop: $drop;
+}

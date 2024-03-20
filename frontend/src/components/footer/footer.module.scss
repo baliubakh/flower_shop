@@ -1,0 +1,61 @@
+@import "../../variables.module.scss";
+
+.wrapper {
+  padding: 55px 120px;
+  background-color: $footer;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoLink {
+  text-decoration: none;
+}
+
+.logo {
+  font-size: $title;
+  font-weight: 5400;
+  color: $white;
+  //   text-decoration: none;
+  line-height: 38px;
+
+  & > span {
+    color: $brand-color-1;
+  }
+}
+
+.footerText {
+  margin-top: 20px;
+}
+
+.contactTitle {
+  font-size: $titleSmall;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.contactUsWrapper {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 30px;
+}
+
+.linkWrapper {
+  font-size: $body-large;
+  color: $grey50;
+  display: flex;
+  gap: 11px;
+}
+
+.linkIcon {
+  width: 18px;
+  color: $grey70;
+}
+
+.linkList {
+  list-style-type: none;
+
+  & > li:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}

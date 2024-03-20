@@ -1,0 +1,106 @@
+@import "../../variables.module.scss";
+
+.authFormWrapper {
+  background-color: $grey;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.formWrapper {
+  display: flex;
+  background-color: $white;
+}
+
+.formInner {
+  padding: 33px 48px 67px;
+  width: 488px;
+}
+
+.title {
+  font-size: $title;
+  font-weight: 400;
+  line-height: 37.5px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: $grey70;
+  font-weight: 400;
+  font-size: $subtitle;
+}
+
+.inputsWrapper {
+  margin-block: 56px 66px;
+}
+
+.textInputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input {
+  padding: 21px 29px;
+  border: 1px solid $grey50;
+  border-radius: 5px;
+  font-size: $subtitle;
+  color: $grey70;
+  outline: none;
+
+  // &:-webkit-autofill::first-line {
+  //   color: $grey70;
+  //   font-size: $subtitle;
+  // }
+  // &:-webkit-autofill,
+  // &:-webkit-autofill:focus {
+  //   transition: background-color 0s 600000s, color 0s 600000s !important;
+  //   // font-size: 20px;
+  // }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  margin-top: 4px;
+  color: $warning;
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: $brand-color-1;
+  line-height: 23px;
+  font-weight: 400px;
+  border: 0;
+  outline: none;
+  text-align: center;
+  padding: 16px;
+  color: $white;
+  font-size: $body-large;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bottomTextWrapper {
+  margin-top: 75px;
+  font-size: $body-large;
+  color: $grey70;
+  text-align: center;
+}
+
+.bottomLink {
+  text-decoration: none;
+  color: $brand-color-1;
+}
+
+.imageBg {
+  position: relative;
+  width: 488px;
+  // background-size: cover;
+}
