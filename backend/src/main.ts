@@ -5,14 +5,16 @@ import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: { origin: 'http://localhost:3000', credentials: true },
+    cors: {
+      origin: 'https://flower-shop-liard.vercel.app/',
+      credentials: true,
+    },
   });
   app.setGlobalPrefix('api');
 
   app.use(helmet());
   app.use(cookieParser());
 
-  await app.listen(5000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
-
