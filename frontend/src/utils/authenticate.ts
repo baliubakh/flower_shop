@@ -14,9 +14,10 @@ export const authenticate = (request: NextRequest) => {
   if (authCookie) {
     const host = request.headers.get("host");
     const payload = jwtDecode<IJwtPayload>(authCookie.value);
+    console.log({ payload });
     if (host) {
       const [, pathname] = request.url.split(host || "");
-
+      console.log({ pathname });
       if (pathname && pathname === "/admin" && payload.role !== "admin")
         return null;
     }
