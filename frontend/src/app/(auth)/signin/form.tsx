@@ -53,6 +53,7 @@ const SignInForm = () => {
   const handleModalClose = () => {
     toggleModal();
     router.push("/");
+    console.log("here");
   };
 
   const onSubmit: SubmitHandler<SigninInput> = async (values) => {
