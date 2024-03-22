@@ -19,3 +19,4 @@ const ProductPage = ({ params }: IProductPage) => {
 };
 
 export default ProductPage;
+
