@@ -110,8 +110,8 @@ export class UsersController {
       maxAge: 24 * 60 * 60 * 1000,
       domain:
         process.env.NODE_ENV === 'development'
-          ? 'localhost'
-          : 'flower-shop-liard.vercel.app',
+          ? '.localhost'
+          : '.flower-shop-liard.vercel.app',
     });
 
     // this.authService.refreshTokens(userId, refreshToken);
