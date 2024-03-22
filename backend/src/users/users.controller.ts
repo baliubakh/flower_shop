@@ -47,6 +47,10 @@ export class UsersController {
       httpOnly: true,
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
+      domain:
+        process.env.NODE_ENV === 'development'
+          ? 'localhost'
+          : 'flower-shop-liard.vercel.app',
     });
     return { message: 'success' };
   }
@@ -61,6 +65,10 @@ export class UsersController {
       httpOnly: true,
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
+      domain:
+        process.env.NODE_ENV === 'development'
+          ? 'localhost'
+          : 'flower-shop-liard.vercel.app',
     });
     return { message: 'success' };
   }
@@ -72,6 +80,10 @@ export class UsersController {
       httpOnly: true,
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
+      domain:
+        process.env.NODE_ENV === 'development'
+          ? 'localhost'
+          : 'flower-shop-liard.vercel.app',
     });
     const user = this.authService.logout(req.user['sub']);
     if (user) return { message: 'success' };
@@ -96,6 +108,10 @@ export class UsersController {
       httpOnly: true,
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
+      domain:
+        process.env.NODE_ENV === 'development'
+          ? 'localhost'
+          : 'flower-shop-liard.vercel.app',
     });
 
     // this.authService.refreshTokens(userId, refreshToken);
