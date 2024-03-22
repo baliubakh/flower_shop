@@ -6,7 +6,8 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: 'https://flower-shop-liard.vercel.app',
+      origin: ['http://localhost:3000', 'https://flower-shop-liard.vercel.app'],
+
       credentials: true,
     },
   });
