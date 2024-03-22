@@ -23,6 +23,8 @@ const images = [
 ];
 
 const HomePage = () => {
+  console.log("here");
+
   return (
     <main className={styles.wrapper}>
       <section className={styles.welcomeWrapper}>
