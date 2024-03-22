@@ -18,7 +18,7 @@ import { LocalAuthGuard } from '../guards/local-user.guard';
 import { User } from '@prisma/client';
 import { AccessTokenGuard } from '../guards/accessToken.guard';
 import { RefreshTokenGuard } from '../guards/refreshToken.guard';
-import { Response } from 'express';
+import { CookieOptions, Response } from 'express';
 
 export interface IReturnUserType {
   message: string;
@@ -29,10 +29,11 @@ export interface ITokens {
   refresh_token: string;
 }
 
-const cookieOptions = {
+const cookieOptions: CookieOptions = {
   httpOnly: true,
   sameSite: 'none' as 'none' | 'lax',
   secure: true,
+  domain: '.localhost',
 };
 
 console.log(cookieOptions);
