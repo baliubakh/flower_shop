@@ -45,6 +45,8 @@ export class UsersController {
     const secretData = await this.authService.signin(req.user);
     res.cookie('auth-cookie', secretData, {
       httpOnly: true,
+      sameSite: 'none',
+
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
       domain:
@@ -64,6 +66,8 @@ export class UsersController {
     res.cookie('auth-cookie', secretData, {
       httpOnly: true,
       path: '/',
+      sameSite: 'none',
+
       maxAge: 24 * 60 * 60 * 1000,
       domain:
         process.env.NODE_ENV === 'development'
@@ -79,6 +83,8 @@ export class UsersController {
     res.clearCookie('auth-cookie', {
       httpOnly: true,
       path: '/',
+      sameSite: 'none',
+
       maxAge: 24 * 60 * 60 * 1000,
       domain:
         process.env.NODE_ENV === 'development'
@@ -108,6 +114,7 @@ export class UsersController {
       httpOnly: true,
       path: '/',
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'none',
       domain:
         process.env.NODE_ENV === 'development'
           ? '.localhost'
