@@ -29,6 +29,18 @@ export interface ITokens {
   refresh_token: string;
 }
 
+const cookieOptions = {
+  httpOnly: true,
+  path: '/',
+  maxAge: 24 * 60 * 60 * 1000,
+  sameSite: 'none' as 'none' | 'lax',
+  secure: true,
+  domain:
+    process.env.NODE_ENV === 'development'
+      ? '.localhost'
+      : '.flower-shop-liard.vercel.app',
+};
+
 @Controller('users')
 export class UsersController {
   constructor(
@@ -43,17 +55,7 @@ export class UsersController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<IReturnUserType> {
     const secretData = await this.authService.signin(req.user);
-    res.cookie('auth-cookie', secretData, {
-      httpOnly: true,
-      sameSite: 'none',
-
-      path: '/',
-      maxAge: 24 * 60 * 60 * 1000,
-      domain:
-        process.env.NODE_ENV === 'development'
-          ? 'localhost'
-          : 'flower-shop-liard.vercel.app',
-    });
+    res.cookie('auth-cookie', secretData, cookieOptions);
     return { message: 'success' };
   }
 
@@ -63,34 +65,14 @@ export class UsersController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<IReturnUserType> {
     const secretData = await this.authService.signup(body);
-    res.cookie('auth-cookie', secretData, {
-      httpOnly: true,
-      path: '/',
-      sameSite: 'none',
-
-      maxAge: 24 * 60 * 60 * 1000,
-      domain:
-        process.env.NODE_ENV === 'development'
-          ? 'localhost'
-          : 'flower-shop-liard.vercel.app',
-    });
+    res.cookie('auth-cookie', secretData, cookieOptions);
     return { message: 'success' };
   }
 
   @UseGuards(AccessTokenGuard)
   @Get('signout')
   logout(@Request() req, @Res({ passthrough: true }) res: Response) {
-    res.clearCookie('auth-cookie', {
-      httpOnly: true,
-      path: '/',
-      sameSite: 'none',
-
-      maxAge: 24 * 60 * 60 * 1000,
-      domain:
-        process.env.NODE_ENV === 'development'
-          ? 'localhost'
-          : 'flower-shop-liard.vercel.app',
-    });
+    res.clearCookie('auth-cookie', cookieOptions);
     const user = this.authService.logout(req.user['sub']);
     if (user) return { message: 'success' };
     else throw new NotFoundException('user not found');
@@ -110,16 +92,7 @@ export class UsersController {
       access_token,
       refresh_token,
     };
-    res.cookie('auth-cookie', secretData, {
-      httpOnly: true,
-      path: '/',
-      maxAge: 24 * 60 * 60 * 1000,
-      sameSite: 'none',
-      domain:
-        process.env.NODE_ENV === 'development'
-          ? '.localhost'
-          : '.flower-shop-liard.vercel.app',
-    });
+    res.cookie('auth-cookie', secretData, cookieOptions);
 
     // this.authService.refreshTokens(userId, refreshToken);
     return { message: 'success' };

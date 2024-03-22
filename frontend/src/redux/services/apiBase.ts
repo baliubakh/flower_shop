@@ -15,6 +15,7 @@ const baseQuery = fetchBaseQuery({
   //   return headers;
   // },
   credentials: "include",
+  mode: "cors",
 });
 
 const baseQueryWithReauth: BaseQueryFn<
