@@ -46,6 +46,7 @@ export class UsersController {
     res.cookie('auth-cookie', secretData, {
       httpOnly: true,
       path: '/',
+      maxAge: 24 * 60 * 60 * 1000,
     });
     return { message: 'success' };
   }
@@ -59,6 +60,7 @@ export class UsersController {
     res.cookie('auth-cookie', secretData, {
       httpOnly: true,
       path: '/',
+      maxAge: 24 * 60 * 60 * 1000,
     });
     return { message: 'success' };
   }
@@ -66,7 +68,11 @@ export class UsersController {
   @UseGuards(AccessTokenGuard)
   @Get('signout')
   logout(@Request() req, @Res({ passthrough: true }) res: Response) {
-    res.clearCookie('auth-cookie', { httpOnly: true, path: '/' });
+    res.clearCookie('auth-cookie', {
+      httpOnly: true,
+      path: '/',
+      maxAge: 24 * 60 * 60 * 1000,
+    });
     const user = this.authService.logout(req.user['sub']);
     if (user) return { message: 'success' };
     else throw new NotFoundException('user not found');
@@ -89,6 +95,7 @@ export class UsersController {
     res.cookie('auth-cookie', secretData, {
       httpOnly: true,
       path: '/',
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     // this.authService.refreshTokens(userId, refreshToken);
