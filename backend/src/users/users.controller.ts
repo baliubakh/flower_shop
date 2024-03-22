@@ -31,15 +31,16 @@ export interface ITokens {
 
 const cookieOptions = {
   httpOnly: true,
+  secure: true,
   path: '/',
   maxAge: 24 * 60 * 60 * 1000,
-  sameSite: 'none' as 'none' | 'lax',
-  secure: true,
-  // domain:
-  //   process.env.NODE_ENV === 'development'
-  //     ? '.localhost'
-  //     : '.flower-shop-liard.vercel.app',
+  domain:
+    process.env.NODE_ENV === 'development'
+      ? 'localhost'
+      : '.flower-shop-liard.vercel.app',
 };
+
+console.log(cookieOptions);
 
 @Controller('users')
 export class UsersController {
