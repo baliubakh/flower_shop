@@ -43,7 +43,11 @@ export class UsersController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<IReturnUserType> {
     const secretData = await this.authService.signin(req.user);
-    res.cookie('auth-cookie', secretData, { httpOnly: true, secure: true });
+    res.cookie('auth-cookie', secretData, {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+    });
     return { message: 'success' };
   }
 
@@ -53,14 +57,18 @@ export class UsersController {
     @Res({ passthrough: true }) res: Response,
   ): Promise<IReturnUserType> {
     const secretData = await this.authService.signup(body);
-    res.cookie('auth-cookie', secretData, { httpOnly: true, secure: true });
+    res.cookie('auth-cookie', secretData, {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+    });
     return { message: 'success' };
   }
 
   @UseGuards(AccessTokenGuard)
   @Get('signout')
   logout(@Request() req, @Res({ passthrough: true }) res: Response) {
-    res.clearCookie('auth-cookie', { httpOnly: true, secure: true });
+    res.clearCookie('auth-cookie', { httpOnly: true, secure: true, path: '/' });
     const user = this.authService.logout(req.user['sub']);
     if (user) return { message: 'success' };
     else throw new NotFoundException('user not found');
@@ -80,7 +88,11 @@ export class UsersController {
       access_token,
       refresh_token,
     };
-    res.cookie('auth-cookie', secretData, { httpOnly: true, secure: true });
+    res.cookie('auth-cookie', secretData, {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+    });
 
     // this.authService.refreshTokens(userId, refreshToken);
     return { message: 'success' };
