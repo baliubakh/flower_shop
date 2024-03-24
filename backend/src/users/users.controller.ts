@@ -40,6 +40,7 @@ const cookieOptions: CookieOptions = {
   // sameSite: 'none', // "strict" | "lax" | "none" (secure must be true)
   // maxAge = how long the cookie is valid for in milliseconds
   maxAge: 3600000 * 24, // 1 hour
+  domain: '.rozsadnyk-solomiya.com',
 };
 
 @Controller('users')
