@@ -11,6 +11,7 @@ export interface IJwtPayload {
 
 export const authenticate = (request: NextRequest) => {
   const authCookie = request.cookies.get("auth-cookie")?.value;
+  console.log({ authCookie });
 
   if (authCookie) {
     const host = request.headers.get("host");
