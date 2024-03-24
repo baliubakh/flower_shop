@@ -112,7 +112,13 @@ const SignUpForm = () => {
         </div>
       </div>
       <div className={styles.imageBg}>
-        <Image src={signUpFormImg} fill={true} alt="bg signup image" priority />
+        <Image
+          src={signUpFormImg}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          alt="bg signup image"
+          priority
+        />
       </div>
       {isOpenModal && (
         <InfoModal

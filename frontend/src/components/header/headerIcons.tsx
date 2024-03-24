@@ -24,6 +24,8 @@ const HeaderIcons = ({ userData }: IHeaderIconsProps) => {
     if ("data" in res) router.push("signin");
   };
 
+  const userDataExists = Object.keys(userData).length !== 0;
+
   return (
     <div className={styles.iconsWrapper}>
       {userData.role === "admin" && (
@@ -33,17 +35,23 @@ const HeaderIcons = ({ userData }: IHeaderIconsProps) => {
           </Link>
         </div>
       )}
-      <div className={styles.profileIconWrapper}>
-        <Link href={`/profile`}>
-          <SVGProfileSolid />
+      {userDataExists && (
+        <div className={styles.profileIconWrapper}>
+          <Link href={`/profile`}>
+            <SVGProfileSolid />
+          </Link>
+        </div>
+      )}
+      <div className={styles.cartIconWrapper}>
+        <Link href={`/cart`}>
+          <SVGCartSolid />
         </Link>
       </div>
-      <div className={styles.cartIconWrapper}>
-        <SVGCartSolid />
-      </div>
-      <div className={styles.signoutIconWrapper} onClick={handleSignOutClick}>
-        <SVGSignOutSolid />
-      </div>
+      {userDataExists && (
+        <div className={styles.signoutIconWrapper} onClick={handleSignOutClick}>
+          <SVGSignOutSolid />
+        </div>
+      )}
     </div>
   );
 };

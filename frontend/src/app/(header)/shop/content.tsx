@@ -10,8 +10,15 @@ import Loader from "@/src/components/loader";
 import ProductCard from "@/src/components/productCard";
 import { IProduct } from "@/src/types/product";
 import Link from "next/link";
+import { UserGetUsersCart } from "@/src/hooks/useGetUsersCart";
 
-const Content = () => {
+interface IContentProps {
+  isUserDataExists: boolean;
+}
+
+const Content = ({ isUserDataExists }: IContentProps) => {
+  const { usersCartIsLoading, usersCart, onAddToCartClick } =
+    UserGetUsersCart(isUserDataExists);
   const [search, setSearch] = useState<string>("");
   const [sortCheap, setSortCheap] = useState<boolean>();
   const [sortedData, setSortedData] = useState<IProduct[]>([]);
@@ -41,7 +48,7 @@ const Content = () => {
     }
   }, [sortCheap, data]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading || usersCartIsLoading) return <Loader />;
 
   return (
     <div className={styles.wrapper}>
@@ -68,13 +75,17 @@ const Content = () => {
         </div>
       </div>
       <div className={styles.cardsWrapper}>
-        {sortedData.map((el) => (
+        {sortedData.map((product) => (
           <Link
-            key={el.id}
-            href={`/product/${el.id}`}
+            key={product.id}
+            href={`/product/${product.id}`}
             className={styles.productLink}
           >
-            <ProductCard {...el} />
+            <ProductCard
+              {...product}
+              isInCart={usersCart && !!usersCart[product.id]}
+              onAddCartClick={onAddToCartClick}
+            />
           </Link>
         ))}
       </div>

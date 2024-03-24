@@ -12,6 +12,8 @@ import HomeImage6 from "@/public/img/home/6.jpeg";
 import Image from "next/image";
 import Slider from "./components/slider";
 import FindUs from "./components/findUs";
+import { IJwtPayload } from "@/src/utils/authenticate";
+import { headers } from "next/headers";
 
 const images = [
   HomeImage1,
@@ -23,7 +25,10 @@ const images = [
 ];
 
 const HomePage = () => {
-  console.log("here");
+  const headersList = headers();
+  const userData: IJwtPayload = JSON.parse(headersList.get("userData") || "{}");
+
+  const isUserDataExists = Object.keys(userData).length !== 0;
 
   return (
     <main className={styles.wrapper}>
@@ -47,6 +52,8 @@ const HomePage = () => {
                 alt={`home-${idx}`}
                 fill
                 style={{ objectFit: "cover" }}
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
           ))}
@@ -55,7 +62,7 @@ const HomePage = () => {
       <section className={styles.bestSellersWrapper}>
         <h3 className={styles.sectionTitle}>Best selers</h3>
         <div className={styles.bestSellerSlider}>
-          <Slider />
+          <Slider isUserDataExists={isUserDataExists} />
         </div>
       </section>
       <section className={styles.findUsWrapper}>

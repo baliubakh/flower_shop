@@ -79,4 +79,9 @@
 
 .buttonWrapper {
   margin-top: 16px;
+
+  & > button {
+    justify-content: center;
+    width: 100%;
+  }
 }

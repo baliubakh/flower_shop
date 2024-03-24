@@ -8,7 +8,7 @@ import HeaderLinks from "./headerLinks";
 
 const Header = () => {
   const headersList = headers();
-  const userData: IJwtPayload = JSON.parse(headersList.get("userData") || "");
+  const userData: IJwtPayload = JSON.parse(headersList.get("userData") || "{}");
 
   return (
     <nav className={styles.wrapper}>

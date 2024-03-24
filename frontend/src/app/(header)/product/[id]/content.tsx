@@ -25,8 +25,9 @@ const ProductContent = ({ id }: IProductContentProps) => {
           <Image
             src={data.photo ? data.photo : noImage}
             alt={`${id}-${data.name}-flower`}
-            layout="fill"
-            objectFit="contain"
+            fill
+            style={{ objectFit: "contain" }}
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
         <div className={styles.productInfoWrapper}>

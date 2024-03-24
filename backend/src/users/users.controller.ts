@@ -39,10 +39,8 @@ const cookieOptions: CookieOptions = {
   // sameSite = only send cookie if the request is coming from the same origin
   sameSite: 'none', // "strict" | "lax" | "none" (secure must be true)
   // maxAge = how long the cookie is valid for in milliseconds
-  maxAge: 3600000, // 1 hour
+  maxAge: 3600000 * 24, // 1 hour
 };
-
-console.log(cookieOptions);
 
 @Controller('users')
 export class UsersController {

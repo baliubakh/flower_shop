@@ -83,8 +83,9 @@ const Info = ({ profileData }: IInfoProps) => {
             <Image
               src={userDemoLogo}
               alt="upload-photo"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
           <span className={infoStyles.uploadText}>Upload</span>

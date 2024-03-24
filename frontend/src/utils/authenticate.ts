@@ -10,12 +10,12 @@ export interface IJwtPayload {
 }
 
 export const authenticate = (request: NextRequest) => {
-  const authCookie = request.cookies.get("auth-cookie");
+  const authCookie = request.cookies.get("auth-cookie")?.value;
   console.log({ authCookie });
 
   if (authCookie) {
     const host = request.headers.get("host");
-    const payload = jwtDecode<IJwtPayload>(authCookie.value);
+    const payload = jwtDecode<IJwtPayload>(authCookie);
     console.log({ payload });
     if (host) {
       const [, pathname] = request.url.split(host || "");

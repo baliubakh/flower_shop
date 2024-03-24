@@ -64,8 +64,9 @@ const ProfilePage = () => {
                   <Image
                     src={userLogo}
                     alt="user-logo"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className={styles.userName}>

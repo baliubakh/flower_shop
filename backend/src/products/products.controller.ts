@@ -21,19 +21,19 @@ interface IFindUserParams {
   id: string;
 }
 
-@UseGuards(AccessTokenGuard)
 @Controller('products')
 export class ProductsController {
   constructor(private productService: ProductsService) {}
 
   @Roles(Role.admin)
-  @UseGuards(RolesGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Post('/')
   async createProduct(
     @Request() req,
     @Body() body: CreateProductDto,
   ): Promise<Product> {
     const user_id = req.user['sub'];
+
     return this.productService.create({
       user: { connect: { id: user_id } },
       ...body,
@@ -41,7 +41,7 @@ export class ProductsController {
   }
 
   @Roles(Role.admin)
-  @UseGuards(RolesGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Get('/all')
   async getAllProducts(): Promise<Product[]> {
     return this.productService.findAll();
@@ -53,7 +53,6 @@ export class ProductsController {
     @Param() params: IFindUserParams,
   ): Promise<Product> {
     const { id } = params;
-    console.log(id);
     const user = req.user['sub'];
     return this.productService.findOneById(parseInt(id), user);
   }
@@ -70,7 +69,7 @@ export class ProductsController {
   }
 
   @Roles(Role.admin)
-  @UseGuards(RolesGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Patch('/:id')
   async updateUserProduct(
     @Request() req,
@@ -82,6 +81,8 @@ export class ProductsController {
     return this.productService.update(parseInt(id), user_id, body);
   }
 
+  @Roles(Role.admin)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Delete('/:id')
   async deleteUserProduct(@Param() params: IFindUserParams): Promise<Product> {
     const { id } = params;

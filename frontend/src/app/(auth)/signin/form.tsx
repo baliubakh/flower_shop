@@ -108,7 +108,12 @@ const SignInForm = () => {
         </div>
       </div>
       <div className={styles.imageBg}>
-        <Image src={signinForm} fill alt="bg signin image" />
+        <Image
+          src={signinForm}
+          fill
+          alt="bg signin image"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
       </div>
       {isOpenModal && (
         <InfoModal

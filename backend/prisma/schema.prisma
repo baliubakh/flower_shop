@@ -24,25 +24,24 @@ enum Role {
 }
 
 model User {
-  id            Int     @id @default(autoincrement())
-  email         String  @unique
-  phone         String  @default("")
-  gender        Gender  @default(male)
-  photo         String  @default("")
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  phone         String    @default("")
+  gender        Gender    @default(male)
+  photo         String    @default("")
   first_name    String
   last_name     String
-  address       String  @default("")
-  state         String  @default("")
-  city          String  @default("")
-  zipcode       String  @default("")
+  address       String    @default("")
+  state         String    @default("")
+  city          String    @default("")
+  zipcode       String    @default("")
   password      String
-  refresh_token String  @default("")
-  role          Role    @default(user)
-  is_active     Boolean @default(true)
-
-  orders   Order[]
-  cart     Cart?
-  products Product[]
+  refresh_token String    @default("")
+  role          Role      @default(user)
+  is_active     Boolean   @default(true)
+  orders        Order[]
+  cart          Cart?
+  products      Product[]
 }
 
 model Order {
@@ -51,18 +50,18 @@ model Order {
   total_price Int
   cart        Cart     @relation(fields: [cart_id], references: [id])
   cart_id     Int      @unique
-  customer    User     @relation(fields: [customer_id], references: [id])
-  customer_id Int
+  customer    User?    @relation(fields: [customer_id], references: [id])
+  customer_id Int?
   is_active   Boolean  @default(true)
 }
 
 model Cart {
   id          Int     @id @default(autoincrement())
-  customer    User    @relation(fields: [customer_id], references: [id])
-  customer_id Int     @unique
+  customer    User?   @relation(fields: [customer_id], references: [id])
+  customer_id Int?    @unique
   cartObj     Json
   is_active   Boolean @default(true)
-  orders      Order?
+  Order       Order?
 }
 
 model Product {

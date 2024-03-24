@@ -10,6 +10,10 @@ export interface IProduct {
   is_active: boolean;
 }
 
+export interface IProductWithAmount extends IProduct {
+  amount: number;
+}
+
 export interface IProductBody {
   name: string;
   category: string;

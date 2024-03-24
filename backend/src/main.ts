@@ -6,10 +6,7 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: [
-        'http://localhost:3000',
-        'https://flower-shop-api-02a827e30795.herokuapp.com',
-      ],
+      origin: ['http://localhost:3000', 'https://rozsadnyk-solomiya.com'],
       exposedHeaders: ['set-cookie'],
       credentials: true,
     },
