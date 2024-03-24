@@ -98,7 +98,7 @@ export const UserGetUsersCart = (isUserDataExists: boolean) => {
           setUsersCart(JSON.parse(dbCart.data.cartObj));
       } else {
         const localCart = JSON.parse(
-          localStorage.getItem(LocalStorageKeys.cart) || "{cartObj:{}}"
+          localStorage.getItem(LocalStorageKeys.cart) || '{"cartObj":{}}'
         );
         if (localCart) setUsersCart(localCart.cartObj);
       }
