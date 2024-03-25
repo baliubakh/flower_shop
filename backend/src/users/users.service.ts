@@ -12,7 +12,6 @@ export class UsersService {
 
   findOne(id: number) {
     if (!id) return null;
-
     return this.prisma.user.findUnique({ where: { id } });
   }
 
