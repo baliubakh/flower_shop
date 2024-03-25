@@ -48,7 +48,8 @@ const cookieOptions: CookieOptions = {
   // maxAge = how long the cookie is valid for in milliseconds
   maxAge: 3600000 * 24, // 24 hours
   domain:
-    process.env.NODE_ENV === 'development' ? '' : '.rozsadnyk-solomiya.com',
+    // process.env.NODE_ENV === 'development' ? '' :
+    '.rozsadnyk-solomiya.com',
 };
 
 @Controller('users')
