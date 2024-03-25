@@ -106,8 +106,6 @@ export class UsersController {
       refresh_token,
     };
     res.cookie('auth-cookie', secretData, cookieOptions);
-
-    // this.authService.refreshTokens(userId, refreshToken);
     return { message: 'success' };
   }
 
