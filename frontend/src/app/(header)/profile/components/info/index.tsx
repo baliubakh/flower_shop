@@ -20,6 +20,7 @@ const genderOptions = [
 
 interface IUpdateInfo {
   phone: string;
+  photo: any;
   email: string;
   first_name: string;
   last_name: string;
@@ -31,7 +32,7 @@ interface IUpdateInfo {
 }
 
 interface IInfoProps {
-  profileData: IUser;
+  profileData: Partial<IUser>;
 }
 
 const Info = ({ profileData }: IInfoProps) => {
@@ -65,7 +66,14 @@ const Info = ({ profileData }: IInfoProps) => {
   };
 
   const onSubmit: SubmitHandler<IUpdateInfo> = async (data) => {
-    await updateProfile(data);
+    const { photo, ...otherData } = data;
+    const formData = new FormData();
+
+    formData.append("photo", photo[0]);
+    Object.entries(otherData).forEach((el) =>
+      formData.append(el[0], el[1].toString())
+    );
+    await updateProfile(formData);
     toggleSuccessModal();
   };
 
@@ -81,14 +89,16 @@ const Info = ({ profileData }: IInfoProps) => {
         <div className={infoStyles.photoUploadWrapper}>
           <div className={infoStyles.photoUpload}>
             <Image
-              src={userDemoLogo}
+              src={profileData.photo ? profileData.photo : userDemoLogo}
               alt="upload-photo"
               fill
               style={{ objectFit: "cover" }}
               sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
-          <span className={infoStyles.uploadText}>Upload</span>
+          <span className={infoStyles.uploadText}>
+            Upload <input {...register("photo")} type="file" />
+          </span>
         </div>
         <div className={infoStyles.inputsWrapper}>
           <div className={infoStyles.inputsRow}>

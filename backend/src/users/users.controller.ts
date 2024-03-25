@@ -3,12 +3,18 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   NotFoundException,
+  ParseFilePipeBuilder,
   Patch,
   Post,
   Request,
   Res,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -18,7 +24,10 @@ import { LocalAuthGuard } from '../guards/local-user.guard';
 import { User } from '@prisma/client';
 import { AccessTokenGuard } from '../guards/accessToken.guard';
 import { RefreshTokenGuard } from '../guards/refreshToken.guard';
-import { CookieOptions, Response } from 'express';
+import { CookieOptions, Express, Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { v4 as uuidv4 } from 'uuid';
+import { S3Service } from '../s3/s3.service';
 
 export interface IReturnUserType {
   message: string;
@@ -40,7 +49,8 @@ const cookieOptions: CookieOptions = {
   // sameSite: 'none', // "strict" | "lax" | "none" (secure must be true)
   // maxAge = how long the cookie is valid for in milliseconds
   maxAge: 3600000 * 24, // 1 hour
-  domain: '.rozsadnyk-solomiya.com',
+  domain:
+    process.env.NODE_ENV === 'production' ? '.rozsadnyk-solomiya.com' : '',
 };
 
 @Controller('users')
@@ -48,6 +58,7 @@ export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
+    private s3Service: S3Service,
   ) {}
 
   @UseGuards(LocalAuthGuard)
@@ -110,14 +121,36 @@ export class UsersController {
 
     return user;
   }
-
+  @UsePipes(new ValidationPipe({ transform: true }))
   @UseGuards(AccessTokenGuard)
   @Patch('/updateMe')
+  @UseInterceptors(FileInterceptor('photo'))
   async updateUser(
     @Request() req,
     @Body() body: UpdateUserDto,
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({
+          fileType: '.(png|jpeg|jpg)',
+        })
+        .addMaxSizeValidator({
+          maxSize: 5 * 1000 * 1000,
+        })
+        .build({
+          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+        }),
+    )
+    file: Express.Multer.File,
   ): Promise<Partial<User>> {
-    const user = await this.usersService.update(parseInt(req.user.sub), body);
+    let photo = '';
+    if (file) {
+      const key = uuidv4();
+      photo = await this.s3Service.uploadFile(file, key);
+    }
+    const user = await this.usersService.update(parseInt(req.user.sub), {
+      ...body,
+      photo,
+    });
     delete user.password;
 
     return user;

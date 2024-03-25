@@ -35,13 +35,14 @@ const ProfilePage = () => {
 
   const getCurrentComponentByTabName = (tabName: profileTab) => {
     if (data) {
+      const { id, is_active, ...filteredData } = data;
       switch (tabName) {
         case "dashboard":
           return <Dashboards />;
         case "orders":
           return <Orders />;
         case "info":
-          return <Info profileData={data} />;
+          return <Info profileData={filteredData} />;
         case "comments":
           return <Comments />;
         default:
@@ -49,7 +50,6 @@ const ProfilePage = () => {
       }
     }
   };
-  // console.log(document && document.cookie);
 
   if (isLoading) return <Loader />;
 
@@ -62,7 +62,7 @@ const ProfilePage = () => {
               <div className={styles.user}>
                 <div className={styles.userLogoWrapper}>
                   <Image
-                    src={userLogo}
+                    src={data.photo ? data.photo : userLogo}
                     alt="user-logo"
                     fill
                     style={{ objectFit: "cover" }}

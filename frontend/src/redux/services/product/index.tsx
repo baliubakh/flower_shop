@@ -5,7 +5,8 @@ import { ICreateProduct, IProduct, IUpdateProduct } from "@/src/types/product";
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    createProduct: builder.mutation<IProduct, ICreateProduct>({
+    createProduct: builder.mutation<IProduct, any>({
+      // ICreateProduct
       query: (body) => ({
         url: "api/products",
         method: "POST",

@@ -66,7 +66,7 @@ const ProductCard = ({
           src={photo ? photo : noImage}
           alt={`${id}-${name}-flower`}
           fill
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "cover" }}
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>

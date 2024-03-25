@@ -18,6 +18,7 @@ export const validationSchema = ({
       category: yup.string().min(3, min).required(required),
       price: yup.number().min(0).required(required),
       quantity: yup.number().min(0).required(required),
+      photo: yup.mixed().required(required),
     })
     .required(required);
 };

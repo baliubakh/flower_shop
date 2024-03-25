@@ -9,6 +9,7 @@ import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { AccessTokenStrategy } from './accessToken.strategy';
 import { RefreshTokenStrategy } from './refreshToken.strategy';
+import { S3Service } from 'src/s3/s3.service';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { RefreshTokenStrategy } from './refreshToken.strategy';
   controllers: [UsersController],
   providers: [
     PrismaService,
+    S3Service,
     UsersService,
     AuthService,
     LocalStrategy,

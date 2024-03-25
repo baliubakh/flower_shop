@@ -11,7 +11,7 @@ import { useUpdateProductMutation } from "@/src/redux/services/product";
 
 interface IEditProductModalProps {
   handleClose: () => void;
-  data: IProductBody & { id: string };
+  data: Partial<IProductBody> & { id: string };
 }
 
 const EditProductModal = ({ handleClose, data }: IEditProductModalProps) => {

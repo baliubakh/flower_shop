@@ -20,6 +20,7 @@ export interface IProductBody {
   description: string;
   price: number;
   quantity: number;
+  photo: any;
 }
 
 export interface IUpdateProduct {

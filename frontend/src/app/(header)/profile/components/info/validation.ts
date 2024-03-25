@@ -36,5 +36,6 @@ export const infoValidationSchema = ({
         .matches(nameRegex, first_name)
         .required(required),
       last_name: yup.string().matches(nameRegex, last_name).required(required),
+      photo: yup.mixed().required(required),
     })
     .required(required);

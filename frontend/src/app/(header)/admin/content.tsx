@@ -24,7 +24,9 @@ const AdminContent = ({}: IAdminContentProps) => {
   const [search, setSearch] = useState<string>("");
   const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
-  const [editingObj, setEditingObj] = useState<IProductBody & { id: string }>();
+  const [editingObj, setEditingObj] = useState<
+    Partial<IProductBody> & { id: string }
+  >();
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) =>
     setSearch(e.currentTarget.value);

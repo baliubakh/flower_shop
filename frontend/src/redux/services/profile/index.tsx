@@ -9,7 +9,7 @@ export const profileApi = api.injectEndpoints({
       }),
       providesTags: ["UserProfile"],
     }),
-    updateProfile: builder.mutation<IUser, Partial<IUser>>({
+    updateProfile: builder.mutation<IUser, any>({
       query: (body) => ({
         url: "api/users/updateMe",
         method: "PATCH",

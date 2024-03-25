@@ -32,8 +32,14 @@ const AddNewProduct = ({ onClose }: IAddNewProductProps) => {
   const [createNewProduct, { isLoading }] = useCreateProductMutation();
 
   const onSubmit: SubmitHandler<IProductBody> = async (data) => {
-    console.log(data);
-    const res = await createNewProduct(data);
+    const { photo, ...otherData } = data;
+    const formData = new FormData();
+
+    formData.append("photo", photo[0]);
+    Object.entries(otherData).forEach((el) =>
+      formData.append(el[0], el[1].toString())
+    );
+    const res = await createNewProduct(formData);
 
     if ("data" in res) {
       reset();
@@ -80,6 +86,7 @@ const AddNewProduct = ({ onClose }: IAddNewProductProps) => {
         min={0}
         {...register("quantity")}
       />
+      <input {...register("photo")} type="file" />
       <div className={styles.btnWrapper}>
         <div>
           <Button text="Add Product" />

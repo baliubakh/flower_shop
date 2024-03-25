@@ -17,6 +17,7 @@ export interface IUser {
   city: string;
   gender: GenderEnum;
   phone: string;
+  photo: string;
   state: string;
   zipcode: string;
   address: string;
