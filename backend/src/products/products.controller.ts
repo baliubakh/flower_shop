@@ -27,6 +27,7 @@ import { S3Service } from '../s3/s3.service';
 import { v4 as uuidv4 } from 'uuid';
 import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
+import { Express } from 'express';
 
 interface IFindUserParams {
   id: string;

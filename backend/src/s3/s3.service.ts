@@ -6,6 +6,7 @@ import {
 } from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Express } from 'express';
 
 @Injectable()
 export class S3Service {

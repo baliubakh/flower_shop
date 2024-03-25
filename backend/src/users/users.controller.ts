@@ -137,6 +137,7 @@ export class UsersController {
           errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
         }),
     )
+    @UploadedFile()
     file: Express.Multer.File,
   ): Promise<Partial<User>> {
     let photo = '';
