@@ -57,3 +57,10 @@ $drop: 0px 20px 20px 0px rgba(0, 0, 0, 0.08),
   //SHADOWS
   drop: $drop;
 }
+
+@mixin fullWBtn {
+  & > button {
+    justify-content: center;
+    width: 100%;
+  }
+}

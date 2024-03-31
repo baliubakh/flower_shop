@@ -2,8 +2,20 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { authenticate } from "./utils/authenticate";
 
-// This function can be marked `async` if using `await` inside
+let locales = ["en", "uk"];
+
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (!pathnameHasLocale) {
+    const locale = "uk";
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
+
   const payload = authenticate(request);
   if (payload) {
     const { sub, ...usersData } = payload;
@@ -30,6 +42,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|signin|signup).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };

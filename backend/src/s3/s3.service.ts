@@ -1,4 +1,5 @@
 import {
+  DeleteObjectCommand,
   PutObjectCommand,
   PutObjectCommandInput,
   PutObjectCommandOutput,
@@ -45,6 +46,20 @@ export class S3Service {
       throw new Error('Image not saved to S3');
     } catch (err) {
       console.log('Image not saved to S3', err);
+    }
+  }
+
+  async deleteFile(key: string) {
+    const bucket = this.configService.get<string>('S3_BUCKET_NAME');
+    const input = new DeleteObjectCommand({
+      Bucket: bucket,
+      Key: key,
+    });
+
+    try {
+      await this.s3.send(input);
+    } catch (err) {
+      console.error(err);
     }
   }
 }

@@ -1,0 +1,107 @@
+@import "../../../../variables.module.scss";
+
+.wrapper {
+  margin: 83px 120px;
+  background-color: $white;
+  border-radius: 5px;
+  display: flex;
+}
+
+.sidebarWrapper {
+  flex: 1 0 0;
+  border-right: 1px solid $grey;
+  display: flex;
+}
+.sidebarInner {
+  padding: 24px;
+
+  width: 325px;
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.userLogoWrapper {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.userNameText {
+  font-size: $body-large;
+  color: $black;
+  margin-bottom: 6px;
+}
+
+.logout {
+  color: $grey70;
+  font-size: $subtitle;
+}
+
+.tabWrapper {
+  padding: 70px 0 0 47px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.tabItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+  color: $grey70;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: $brand-color-1;
+}
+
+.tabIcon {
+  width: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.contactUs {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $grey70;
+  gap: 15px;
+  margin-left: 13px;
+}
+
+.header {
+  width: 100%;
+  padding: 25px 40px;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabItemWrapper {
+  width: 100%;
+}
+
+.headerButtonWrapper {
+  width: 100px;
+}
+
+.tabTitle {
+  font-size: $body-extra-large;
+  font-weight: 500;
+  color: $black;
+}

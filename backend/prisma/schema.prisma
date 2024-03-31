@@ -65,14 +65,14 @@ model Cart {
 }
 
 model Product {
-  id          Int     @id @default(autoincrement())
-  user        User    @relation(fields: [user_id], references: [id])
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [user_id], references: [id])
   user_id     Int
   name        String
-  category    String  @default("")
+  category    String   @default("")
   description String
-  price       Int     @default(0)
-  quantity    Int     @default(0)
-  photo       String  @default("")
-  is_active   Boolean @default(true)
+  price       Int      @default(0)
+  quantity    Int      @default(0)
+  photos      String[] @default([])
+  is_active   Boolean  @default(true)
 }

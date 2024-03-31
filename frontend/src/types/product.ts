@@ -6,7 +6,7 @@ export interface IProduct {
   description: string;
   price: number;
   quantity: number;
-  photo: string;
+  photos: string[];
   is_active: boolean;
 }
 
@@ -20,11 +20,30 @@ export interface IProductBody {
   description: string;
   price: number;
   quantity: number;
-  photo: any;
+  photos: any;
+}
+
+export interface IEditProductBody {
+  name: string;
+  category: string;
+  description: string;
+  price: number;
+  quantity: number;
+  photos: string[];
+  newPhotos: any;
+}
+export interface IEditProductForm {
+  name: string;
+  category: string;
+  description: string;
+  price: number;
+  quantity: number;
+  photos: { value: string }[];
+  newPhotos: any;
 }
 
 export interface IUpdateProduct {
-  body: IProductBody;
+  body: FormData;
   id: string;
 }
 

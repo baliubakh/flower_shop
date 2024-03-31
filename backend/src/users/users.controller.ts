@@ -48,8 +48,9 @@ const cookieOptions: CookieOptions = {
   // maxAge = how long the cookie is valid for in milliseconds
   maxAge: 3600000 * 24, // 24 hours
   domain:
-    // process.env.NODE_ENV === 'development' ? '' :
-    '.rozsadnyk-solomiya.com',
+    process.env.NODE_ENV === 'development'
+      ? undefined
+      : '.rozsadnyk-solomiya.com',
 };
 
 @Controller('users')
@@ -140,9 +141,18 @@ export class UsersController {
     @UploadedFile()
     file: Express.Multer.File,
   ): Promise<Partial<User>> {
+    const prevUserData = await this.usersService.findOne(req.user.sub);
+
+    if (!prevUserData) throw new NotFoundException('user not found');
+
+    if (prevUserData.photo) {
+      const key = prevUserData.photo.split('/')[4];
+
+      this.s3Service.deleteFile(`users/${key}`);
+    }
     let photo = '';
     if (file) {
-      const key = uuidv4();
+      const key = `users/${uuidv4()}`;
       photo = await this.s3Service.uploadFile(file, key);
     }
     const user = await this.usersService.update(parseInt(req.user.sub), {

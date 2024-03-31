@@ -1,28 +1,31 @@
 import React from "react";
 import styles from "./header.module.scss";
 import Link from "next/link";
-import { headers } from "next/headers";
 import { IJwtPayload } from "@/src/utils/authenticate";
 import HeaderIcons from "./headerIcons";
 import HeaderLinks from "./headerLinks";
+import { IHeader, Locale } from "@/src/types";
 
-const Header = () => {
-  const headersList = headers();
-  const userData: IJwtPayload = JSON.parse(headersList.get("userData") || "{}");
+interface IHeaderProps {
+  userData?: IJwtPayload;
+  pageData: IHeader;
+  lang: Locale;
+}
 
+const Header = ({ userData, pageData, lang }: IHeaderProps) => {
   return (
     <nav className={styles.wrapper}>
       <div className={styles.logoWrapper}>
-        <Link href="/" className={styles.logoLink}>
+        <Link href={`/${lang}/`} className={styles.logoLink}>
           <h1 className={styles.logo}>
-            <span>Flower</span> Shop
+            {pageData.nameFirst} <span>{pageData.nameLast}</span>
           </h1>
         </Link>
       </div>
       <ul className={styles.linkList}>
-        <HeaderLinks />
+        <HeaderLinks links={pageData.links} lang={lang} />
       </ul>
-      {userData && <HeaderIcons userData={userData} />}
+      {userData && <HeaderIcons lang={lang} userData={userData} />}
     </nav>
   );
 };

@@ -3,13 +3,11 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
   Param,
-  ParseFilePipeBuilder,
   Patch,
   Post,
   Request,
-  UploadedFile,
+  UploadedFiles,
   UseGuards,
   UseInterceptors,
   UsePipes,
@@ -22,10 +20,10 @@ import { Product, Role } from '@prisma/client';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { RolesGuard } from '../guards/role.guard';
 import { Roles } from '../decorators/role';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { S3Service } from '../s3/s3.service';
 import { v4 as uuidv4 } from 'uuid';
-import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
 import { Express } from 'express';
 
@@ -57,32 +55,32 @@ export class ProductsController {
   @UsePipes(new ValidationPipe({ transform: true }))
   @UseGuards(AccessTokenGuard, RolesGuard)
   @Post('/')
-  @UseInterceptors(FileInterceptor('photo'))
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'photos', maxCount: 10 }]))
   async createProduct(
     @Request() req,
     @Body() body: CreateProductDto,
-
-    @UploadedFile(
-      new ParseFilePipeBuilder()
-        .addFileTypeValidator({
-          fileType: '.(png|jpeg|jpg)',
-        })
-        .addMaxSizeValidator({
-          maxSize: 5 * 1000 * 1000,
-        })
-        .build({
-          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-        }),
-    )
-    file: Express.Multer.File,
+    // new ParseFilePipeBuilder()
+    //   .addFileTypeValidator({ fileType: /.(jpg|jpeg|png)$/ })
+    //   .addMaxSizeValidator({
+    //     maxSize: 5 * 1000 * 1000,
+    //   })
+    //   .build({
+    //     errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+    //   }),
+    @UploadedFiles()
+    files: { photos: Express.Multer.File[] },
   ): Promise<Product> {
-    const key = uuidv4();
-    const photo = await this.s3Service.uploadFile(file, key);
+    const photos = await Promise.all(
+      files.photos.map(async (currPhoto) => {
+        const key = `products/${uuidv4()}`;
+        return await this.s3Service.uploadFile(currPhoto, key);
+      }),
+    );
 
     const user_id = req.user['sub'];
     return this.productService.create({
       user: { connect: { id: user_id } },
-      photo,
+      photos,
       ...body,
     });
   }
@@ -95,13 +93,9 @@ export class ProductsController {
   }
 
   @Get('/:id')
-  async getProduct(
-    @Request() req,
-    @Param() params: IFindUserParams,
-  ): Promise<Product> {
+  async getProduct(@Param() params: IFindUserParams): Promise<Product> {
     const { id } = params;
-    const user = req.user['sub'];
-    return this.productService.findOneById(parseInt(id), user);
+    return this.productService.findOneById(parseInt(id));
   }
 
   // @Get('/')
@@ -116,16 +110,40 @@ export class ProductsController {
   }
 
   @Roles(Role.admin)
+  @UsePipes(new ValidationPipe({ transform: true }))
   @UseGuards(AccessTokenGuard, RolesGuard)
   @Patch('/:id')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'newPhotos', maxCount: 10 }]))
   async updateUserProduct(
-    @Request() req,
     @Param() params: IFindUserParams,
     @Body() body: UpdateProductDto,
+    @UploadedFiles()
+    files: { newPhotos: Express.Multer.File[] },
   ): Promise<Product> {
     const { id } = params;
-    const user_id = req.user['sub'];
-    return this.productService.update(parseInt(id), user_id, body);
+    const product = await this.productService.findOneById(parseInt(id));
+    if (product && product.photos) {
+      await Promise.all(
+        product.photos
+          .filter((el) => body.photos && !body.photos.includes(el))
+          .map(async (currPhoto) => {
+            console.log(currPhoto);
+            const splitted = currPhoto.split('/')[4];
+            await this.s3Service.deleteFile(`products/${splitted}`);
+          }),
+      );
+    }
+    const photos = await Promise.all(
+      (files.newPhotos || []).map(async (currPhoto) => {
+        const key = `products/${uuidv4()}`;
+        return await this.s3Service.uploadFile(currPhoto, key);
+      }),
+    );
+
+    return this.productService.update(parseInt(id), {
+      ...body,
+      photos: [...(body.photos || []), ...photos],
+    });
   }
 
   @Roles(Role.admin)
@@ -135,19 +153,13 @@ export class ProductsController {
     const { id } = params;
 
     const product = await this.productService.findOneById(parseInt(id));
-    if (product.photo) {
-      const key = product.photo.split('/')[3];
-      const bucket = this.configService.get<string>('S3_BUCKET_NAME');
-      const input = new DeleteObjectCommand({
-        Bucket: bucket,
-        Key: key,
-      });
-
-      try {
-        await this.s3.send(input);
-      } catch (err) {
-        console.error(err);
-      }
+    if (product.photos) {
+      await Promise.all(
+        product.photos.map(async (currPhoto) => {
+          const splitted = currPhoto.split('/')[4];
+          await this.s3Service.deleteFile(`products/${splitted}`);
+        }),
+      );
     }
 
     return this.productService.remove(parseInt(id));

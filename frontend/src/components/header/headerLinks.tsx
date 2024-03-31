@@ -4,11 +4,16 @@ import { usePathname } from "next/navigation";
 import styles from "./header.module.scss";
 import React from "react";
 import Link from "next/link";
+import { Locale } from "@/src/types";
 
-const HeaderLinks = () => {
+interface IHeaderLinksProps {
+  lang: Locale;
+  links: string[];
+}
+
+const HeaderLinks = ({ lang, links }: IHeaderLinksProps) => {
   const pathname = usePathname();
   const paths = ["/", "/shop", "/about"];
-  const labels = ["Home", "Shop", "About"];
 
   return (
     <>
@@ -19,7 +24,7 @@ const HeaderLinks = () => {
           }`}
           key={idx}
         >
-          <Link href={el}>{labels[idx]}</Link>
+          <Link href={`/${lang}/${el}`}>{links[idx]}</Link>
         </li>
       ))}
     </>

@@ -1,0 +1,159 @@
+{
+  "home": {
+    "title": "Flowers, 🌻 what the world needs",
+    "subtitle": "Browse between hundreds of flowers",
+    "btn": "Browse",
+    "sellersTitle": "Best selers",
+    "findTitle": "Where you can find us"
+  },
+  "header": {
+    "nameFirst": "Shop",
+    "nameLast": "Solomiya",
+    "links": ["Home", "Shop", "About"]
+  },
+  "footer": {
+    "nameFirst": "Shop",
+    "nameLast": "Solomiya",
+    "subtitle": "Some text to satisfy users",
+    "contactUs": "Contact Us"
+  },
+  "shop": {
+    "search": "Search",
+    "cheap": "Cheap",
+    "expensive": "Expensive"
+  },
+  "admin": {
+    "search": "Search",
+    "cancel": "Cancel",
+    "addNew": {
+      "btn": "Add new product",
+      "validation": {
+        "min": "This field should be at least 3 symbols",
+        "required": "Field is required",
+        "minNumber": "Field should contain at least 0"
+      },
+      "name": "Product Name",
+      "desc": "Product Description",
+      "category": "Product Category",
+      "price": "Product Price",
+      "quantity": "Product Quantity",
+      "submitBtn": "Add Product"
+    },
+    "editProduct": {
+      "title": "Edit {{name}}",
+      "validation": {
+        "min": "This field should be at least 3 symbols",
+        "required": "Field is required",
+        "minNumber": "Field should contain at least 0"
+      },
+      "name": "Product Name",
+      "desc": "Product Description",
+      "category": "Product Category",
+      "price": "Product Price",
+      "quantity": "Product Quantity",
+      "submitBtn": "Edit Product"
+    }
+  },
+  "profile": {
+    "tabNames": ["Orders", "My Information"],
+    "contact": "Contact with us",
+    "logOut": "Log out",
+    "info": {
+      "submitBtn": "Submit",
+      "uploadPhoto": "Upload",
+      "phoneTitle": "Phone Number",
+      "phonePlaceh": "Your Phone Number",
+      "emailTitle": "E-mail",
+      "emailPlaceh": "Your E-mail",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "gender": ["Male", "Female"],
+      "genderTitle": "Gender",
+      "addressTitle": "Address",
+      "addressPlaceh": "Street, house number",
+      "stateTitle": "State",
+      "statePlaceh": "Your State",
+      "cityTitle": "City",
+      "cityPlaceh": "Your City",
+      "zipCodeTitle": "Zip-Code",
+      "zipCodePlaceh": "Your Zip-Code",
+      "validation": {
+        "email": "Input valid e-mail",
+        "required": "Field is required",
+        "phone": "Input valid phone number",
+        "first_name": "Input valid first name",
+        "last_name": "Input valid last name"
+      },
+      "modal": {
+        "title": "Succesful User update",
+        "text": "Check if everything is correct",
+        "btnText": "OK"
+      }
+    }
+  },
+  "cart": {
+    "noItemsText": "You don't have any products in your cart, please add something to cart to see changes",
+    "yourCart": "Your Cart",
+    "subtotal": "Subtotal for {{length}} items",
+    "checkout": "Checkout",
+    "item": {
+      "perUnit": "price per unit",
+      "total": "Total"
+    }
+  },
+  "productItem": {
+    "addToCart": "Add to cart",
+    "morePhotos": "More photos"
+  },
+  "productCard": {
+    "in": "In cart",
+    "add": "Add to cart"
+  },
+  "signin": {
+    "title": "Sign in",
+    "subtitle": "Sign in and have more fun",
+    "rememberMe": "Remember Me",
+    "submitBtn": "Sign in",
+    "ask": "Don't have an account?",
+    "forgotPassText": "Forgot Password",
+    "linkText": "Sign up",
+    "placeholders": { "email": "E-mail", "password": "Password" },
+    "modal": {
+      "title": "Succesful Sign in",
+      "text": "You are being redirected to the home page",
+      "btnText": "Go to the Home Page"
+    },
+    "validation": {
+      "email": "Input valid e-mail",
+      "required": "Field is required",
+      "min": "Password should be at least 8 symbols",
+      "max": "Password should be maximum 30 symbols"
+    }
+  },
+  "signup": {
+    "title": "Sign up",
+    "subtitle": "Sign up and help us help you",
+    "submitBtn": "Sign up",
+    "ask": "Already have an account?",
+    "linkText": "Sign in",
+    "placeholder": {
+      "email": "E-mail",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "password": "Password",
+      "passwordConfirm": "Re-Enter Password"
+    },
+    "modal": {
+      "title": "Succesful Sign up",
+      "text": "You are being redirected to the home page",
+      "btnText": "Go to the Home Page"
+    },
+    "validation": {
+      "email": "Input valid e-mail",
+      "required": "Field is required",
+      "passwordConfirm": "Password must match",
+      "min": "Password should be at least 8 symbols",
+      "max": "Password should be maximum 30 symbols"
+    }
+  }
+}

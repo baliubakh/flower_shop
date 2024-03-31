@@ -1,79 +1,214 @@
-export enum HttpStatusCode {
-  CONTINUE = 100,
+export type Locale = "en" | "uk";
 
-  SWITCHING_PROTOCOLS = 101,
-
-  PROCESSING = 102,
-
-  OK = 200,
-
-  CREATED = 201,
-
-  ACCEPTED = 202,
-
-  NON_AUTHORITATIVE_INFORMATION = 203,
-
-  MULTIPLE_CHOICES = 300,
-
-  MOVED_PERMANENTLY = 301,
-
-  FOUND = 302,
-
-  SEE_OTHER = 303,
-
-  NOT_MODIFIED = 304,
-
-  TEMPORARY_REDIRECT = 307,
-
-  PERMANENT_REDIRECT = 308,
-
-  BAD_REQUEST = 400,
-
-  UNAUTHORIZED = 401,
-
-  PAYMENT_REQUIRED = 402,
-
-  FORBIDDEN = 403,
-
-  NOT_FOUND = 404,
-
-  METHOD_NOT_ALLOWED = 405,
-
-  TOO_MANY_REQUESTS = 429,
-
-  INTERNAL_SERVER_ERROR = 500,
-
-  NOT_IMPLEMENTED = 501,
-
-  BAD_GATEWAY = 502,
-
-  SERVICE_UNAVAILABLE = 503,
-
-  GATEWAY_TIMEOUT = 504,
-
-  HTTP_VERSION_NOT_SUPPORTED = 505,
+export interface IHome {
+  title: string;
+  subtitle: string;
+  btn: string;
+  sellersTitle: string;
+  findTitle: string;
 }
 
-export interface IHttpConfig {
-  withCredentials?: boolean;
-  url?: string;
-  headers?: Record<string, string>;
+export interface IHeader {
+  nameFirst: string;
+  nameLast: string;
+  links: string[];
 }
 
-export interface IHttpClient {
-  get<R>(url: string, config?: IHttpConfig): Promise<R | void>;
-  post<R, D>(url: string, data: D, config?: IHttpConfig): Promise<R | void>;
-  patch<R, D>(url: string, data: D, config?: IHttpConfig): Promise<R | void>;
-  put<R, D>(url: string, data: D, config?: IHttpConfig): Promise<R | void>;
-  delete<R>(url: string, config?: IHttpConfig): Promise<R | void>;
+export interface IFooter {
+  nameFirst: string;
+  nameLast: string;
+  subtitle: string;
+  contactUs: string;
 }
 
-export interface IResponse<T = object | object[]> {
-  status: HttpStatusCode;
-  data: T;
+export interface IShop {
+  search: string;
+  cheap: string;
+  expensive: string;
 }
 
-export interface IErrorData {
-  statusCode: number;
-  message: string;
+export interface IAddNewValidation {
+  min: string;
+  required: string;
+  minNumber: string;
+}
+
+export interface IAddNew {
+  btn: string;
+  validation: IAddNewValidation;
+  name: string;
+  desc: string;
+  category: string;
+  price: string;
+  quantity: string;
+  submitBtn: string;
+}
+
+export interface IEditProductValidation {
+  min: string;
+  required: string;
+  minNumber: string;
+}
+
+export interface IEditProduct {
+  title: string;
+  validation: IEditProductValidation;
+  name: string;
+  desc: string;
+  category: string;
+  price: string;
+  quantity: string;
+  submitBtn: string;
+}
+
+export interface IAdmin {
+  search: string;
+  cancel: string;
+  addNew: IAddNew;
+  editProduct: IEditProduct;
+}
+
+export interface IInfoValidation {
+  email: string;
+  required: string;
+  phone: string;
+  first_name: string;
+  last_name: string;
+}
+
+export interface IModal {
+  title: string;
+  text: string;
+  btnText: string;
+}
+
+export interface IProfileInfo {
+  submitBtn: string;
+  uploadPhoto: string;
+  phoneTitle: string;
+  phonePlaceh: string;
+  emailTitle: string;
+  emailPlaceh: string;
+  firstName: string;
+  lastName: string;
+  gender: string[];
+  genderTitle: string;
+  stateTitle: string;
+  statePlaceh: string;
+  cityTitle: string;
+  cityPlaceh: string;
+  zipCodeTitle: string;
+  zipCodePlaceh: string;
+  addressTitle: string;
+  addressPlaceh: string;
+  validation: IInfoValidation;
+  modal: IModal;
+}
+
+export interface IProfile {
+  tabNames: string[];
+  contact: string;
+  logOut: string;
+  info: IProfileInfo;
+}
+
+export interface IItem {
+  perUnit: string;
+  total: string;
+}
+
+export interface ICart {
+  noItemsText: string;
+  yourCart: string;
+  subtotal: string;
+  checkout: string;
+  item: IItem;
+}
+
+export interface IProductItem {
+  addToCart: string;
+  morePhotos: string;
+}
+
+export interface IProductCard {
+  in: string;
+  add: string;
+}
+
+export interface ISigninPlaceholders {
+  email: string;
+  password: string;
+}
+
+export interface ISigninModal {
+  title: string;
+  text: string;
+  btnText: string;
+}
+
+export interface ISignupModal {
+  title: string;
+  text: string;
+  btnText: string;
+}
+
+export interface ISigninValidation {
+  email: string;
+  required: string;
+  min: string;
+  max: string;
+}
+
+export interface ISignin {
+  title: string;
+  subtitle: string;
+  rememberMe: string;
+  submitBtn: string;
+  ask: string;
+  forgotPassText: string;
+  linkText: string;
+  placeholders: ISigninPlaceholders;
+  modal: ISigninModal;
+  validation: ISigninValidation;
+}
+
+export interface ISignupPlaceholder {
+  email: string;
+  first_name: string;
+  last_name: string;
+  password: string;
+  passwordConfirm: string;
+}
+
+export interface ISignupValidation {
+  email: string;
+  required: string;
+  passwordConfirm: string;
+  min: string;
+  max: string;
+}
+
+export interface ISignup {
+  title: string;
+  subtitle: string;
+  submitBtn: string;
+  ask: string;
+  linkText: string;
+  placeholder: ISignupPlaceholder;
+  validation: ISignupValidation;
+  modal: ISignupModal;
+}
+
+export interface IPages {
+  home: IHome;
+  header: IHeader;
+  footer: IFooter;
+  shop: IShop;
+  admin: IAdmin;
+  profile: IProfile;
+  cart: ICart;
+  productItem: IProductItem;
+  productCard: IProductCard;
+  signup: ISignup;
+  signin: ISignin;
 }

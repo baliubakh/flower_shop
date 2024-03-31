@@ -1,0 +1,47 @@
+@import "../../../../variables.module.scss";
+
+.wrapper {
+  padding: 39px 120px;
+}
+
+.searchWrapper {
+  flex: 0 0 1;
+  width: 500px;
+}
+
+.sortWrapper {
+  font-size: $subtitle;
+  color: $black;
+  cursor: pointer;
+}
+
+.sortIconWrapper {
+  width: 25px;
+  color: $brand-color-1;
+}
+
+.sortInner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filterWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: $white;
+  border-radius: 5px;
+}
+
+.cardsWrapper {
+  margin-top: 39px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px 39px;
+}
+
+.productLink {
+  text-decoration: none;
+}

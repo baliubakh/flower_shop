@@ -4,6 +4,7 @@ import Link from "next/link";
 import SVGLocationSolid from "@/public/img/svg/locationSolid";
 import SVGEmailSolid from "@/public/img/svg/emailSolid";
 import SVGPhoneSolid from "@/public/img/svg/phoneSolid";
+import { IFooter, Locale } from "@/src/types";
 
 const links = [
   { icon: <SVGLocationSolid />, text: "26985 Brighton Lane, Lake Forest, CA" },
@@ -11,21 +12,26 @@ const links = [
   { icon: <SVGPhoneSolid />, text: "+380 111 1111" },
 ];
 
-const Footer = () => {
+interface IFooterProps {
+  pageData: IFooter;
+  lang: Locale;
+}
+
+const Footer = async ({ pageData, lang }: IFooterProps) => {
   return (
     <footer className={styles.wrapper}>
       <div>
         <div className={styles.logoWrapper}>
-          <Link href="/" className={styles.logoLink}>
+          <Link href={`/${lang}/`} className={styles.logoLink}>
             <h1 className={styles.logo}>
-              <span>Flower</span> Shop
+              {pageData.nameFirst} <span>{pageData.nameLast}</span>
             </h1>
           </Link>
         </div>
-        <p className={styles.footerText}>Some text to satisfy users</p>
+        <p className={styles.footerText}>{pageData.subtitle}</p>
       </div>
       <div className={styles.contactUsWrapper}>
-        <h4 className={styles.contactTitle}>Contact Us</h4>
+        <h4 className={styles.contactTitle}>{pageData.contactUs}</h4>
         <ul className={styles.linkList}>
           {links.map((el, idx) => (
             <li key={idx}>

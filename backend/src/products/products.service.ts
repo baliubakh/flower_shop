@@ -35,7 +35,7 @@ export class ProductsService {
     return this.prisma.product.findMany({ orderBy: { id: 'desc' } });
   }
 
-  async update(id: number, user_id: number, data: Partial<Product>) {
+  async update(id: number, data: Partial<Product>) {
     const product = await this.findOneById(id);
     if (!product) throw new NotFoundException('Product not found');
     return this.prisma.product.update({ where: { id }, data });

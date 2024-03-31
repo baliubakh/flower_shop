@@ -10,12 +10,15 @@ import SVGCartSolid from "@/public/img/svg/cartSolid";
 import SVGSignOutSolid from "@/public/img/svg/signOutSolid";
 import { useLazySignoutQuery } from "@/src/redux/services/auth";
 import { useRouter } from "next/navigation";
+import SVGSignInSolid from "@/public/img/svg/signinSolid";
+import { Locale } from "@/src/types";
 
 interface IHeaderIconsProps {
   userData: IJwtPayload;
+  lang: Locale;
 }
 
-const HeaderIcons = ({ userData }: IHeaderIconsProps) => {
+const HeaderIcons = ({ userData, lang }: IHeaderIconsProps) => {
   const [signOut] = useLazySignoutQuery();
   const router = useRouter();
 
@@ -30,26 +33,32 @@ const HeaderIcons = ({ userData }: IHeaderIconsProps) => {
     <div className={styles.iconsWrapper}>
       {userData.role === "admin" && (
         <div className={styles.profileIconWrapper}>
-          <Link href="/admin">
+          <Link href={`/${lang}/admin`}>
             <SVGAdminPanel />
           </Link>
         </div>
       )}
       {userDataExists && (
         <div className={styles.profileIconWrapper}>
-          <Link href={`/profile`}>
+          <Link href={`/${lang}/profile`}>
             <SVGProfileSolid />
           </Link>
         </div>
       )}
       <div className={styles.cartIconWrapper}>
-        <Link href={`/cart`}>
+        <Link href={`/${lang}/cart`}>
           <SVGCartSolid />
         </Link>
       </div>
-      {userDataExists && (
-        <div className={styles.signoutIconWrapper} onClick={handleSignOutClick}>
+      {(userDataExists && (
+        <div className={styles.signIconWrapper} onClick={handleSignOutClick}>
           <SVGSignOutSolid />
+        </div>
+      )) || (
+        <div className={styles.signIconWrapper}>
+          <Link href={`/${lang}/signin`}>
+            <SVGSignInSolid />
+          </Link>
         </div>
       )}
     </div>
