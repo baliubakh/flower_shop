@@ -13,11 +13,26 @@
 .formWrapper {
   display: flex;
   background-color: $white;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 500px) {
+    padding-top: 50px;
+    height: 100%;
+  }
 }
 
 .formInner {
   padding: 33px 48px 67px;
   width: 488px;
+
+  @media (max-width: 500px) {
+    height: 100%;
+    width: 100%;
+    padding: 15px 25px 30px;
+  }
 }
 
 .title {
@@ -102,5 +117,9 @@
 .imageBg {
   position: relative;
   width: 488px;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
   // background-size: cover;
 }

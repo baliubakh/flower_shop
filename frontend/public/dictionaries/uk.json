@@ -97,13 +97,14 @@
     "subtotal": "Проміжний підсумок за {{length}} пункти",
     "checkout": "Перевірити",
     "item": {
-      "perUnit": "ціна за одиницю",
+      "perUnit": "Ціна",
       "total": "Всього"
     }
   },
   "productItem": {
     "addToCart": "Додати в кошик",
-    "morePhotos": "Більше фотографій"
+    "morePhotos": "Більше фотографій",
+    "each": "за одиницю"
   },
   "productCard": {
     "in": "У кошику",

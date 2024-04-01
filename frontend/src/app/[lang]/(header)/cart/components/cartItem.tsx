@@ -58,7 +58,7 @@ const CartItem = ({
         <div className={styles.price}>
           {pageData.perUnit} {price} грн
         </div>
-        <div className={styles.spaceBetween}>
+        <div className={`${styles.spaceBetween} ${styles.counterMobile}`}>
           <Counter handleCountChange={handleTotalChange} start={total} />
           <span>
             {pageData.total} {total * price}грн

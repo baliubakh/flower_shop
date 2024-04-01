@@ -8,3 +8,8 @@
 .swiper-button-prev::after {
   content: "";
 }
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}

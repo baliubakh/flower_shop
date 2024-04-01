@@ -41,7 +41,9 @@ const ProductContent = ({ id, pageData }: IProductContentProps) => {
               <p className={styles.productDescription}>{data.description}</p>
             </div>
             <div className={styles.productBottomInfoWrapper}>
-              <span className={styles.productPrice}>{data.price}₴ / each</span>
+              <span className={styles.productPrice}>
+                {data.price}₴ / {pageData.each}
+              </span>
               <Button
                 size="small"
                 icon={<SVGCartSolid />}

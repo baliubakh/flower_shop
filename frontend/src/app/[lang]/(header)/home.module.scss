@@ -2,6 +2,12 @@
 
 .pageWrapper {
   flex: 1;
+
+  max-width: 1800px;
+  width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  position: relative;
 }
 
 .headerWrapper {
@@ -13,15 +19,50 @@
 
 .wrapper {
   padding: 73px 120px;
+
+  @media (max-width: 1000px) {
+    padding: 30px 45px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .welcomeWrapper {
   display: flex;
+  justify-content: space-between;
   gap: 26px;
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+  }
 }
+
+.welcomeInfo {
+  max-width: 600px;
+
+  @media (max-width: 1150px) {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 .welcomeTitle {
   font-size: $mainTitle;
   font-weight: 400;
+
+  @media (max-width: 1350px) {
+    font-size: $title;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $mainTitle;
+  }
+
+  @media (max-width: 500px) {
+    font-size: $title;
+  }
 }
 
 .welcomeSubtitle {
@@ -29,23 +70,50 @@
   font-size: $body-large;
   font-weight: 400;
   margin-block: 36px 46px;
+
+  @media (max-width: 1350px) {
+    font-size: $body-medium;
+    margin-block: 16px 26px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body-large;
+  }
 }
 
 .welcomeBtn {
   width: fit-content;
+
+  @media (max-width: 1150px) {
+    width: 100%;
+  }
 }
 
 .welcomeImagesWrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 .welcomeImage {
   width: 192px;
   height: 192px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+
+  @media (max-width: 1150px) {
+    width: 100%;
+    height: 192px;
+  }
+
+  @media (max-width: 768px) {
+    height: 112px;
+  }
 }
 
 .bestSellersWrapper {
@@ -70,6 +138,20 @@
     height: 2px;
     background-color: $grey50;
   }
+
+  @media (max-width: 768px) {
+    font-size: $subtitle;
+  }
+
+  @media (max-width: 450px) {
+    font-size: $body-default;
+    column-gap: 5px;
+
+    &::after,
+    &::before {
+      width: 50px;
+    }
+  }
 }
 
 .bestSellerSlider {
@@ -92,4 +174,8 @@
   top: 0;
   bottom: 0;
   width: "100%";
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 }

@@ -128,6 +128,7 @@ export interface ICart {
 export interface IProductItem {
   addToCart: string;
   morePhotos: string;
+  each: string;
 }
 
 export interface IProductCard {

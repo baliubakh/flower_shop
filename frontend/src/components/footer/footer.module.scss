@@ -6,6 +6,12 @@
   color: $white;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 20px 45px;
+    gap: 40px;
+    flex-direction: column;
+  }
 }
 
 .logoLink {
@@ -22,6 +28,10 @@
   & > span {
     color: $brand-color-1;
   }
+
+  @media (max-width: 768px) {
+    font-size: $titleSmall;
+  }
 }
 
 .footerText {
@@ -32,6 +42,10 @@
   font-size: $titleSmall;
   font-weight: 400;
   margin-bottom: 28px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
 }
 
 .contactUsWrapper {
@@ -45,11 +59,17 @@
   color: $grey50;
   display: flex;
   gap: 11px;
+
+  @media (max-width: 768px) {
+    font-size: $body-default;
+  }
 }
 
 .linkIcon {
   width: 18px;
   color: $grey70;
+  display: flex;
+  align-items: center;
 }
 
 .linkList {
@@ -57,5 +77,11 @@
 
   & > li:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  @media (max-width: 768px) {
+    & > li:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 }

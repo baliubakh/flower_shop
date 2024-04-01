@@ -33,6 +33,10 @@
   max-height: 95vh;
   overflow: auto;
   z-index: 21;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .title {

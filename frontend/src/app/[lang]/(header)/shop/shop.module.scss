@@ -2,11 +2,23 @@
 
 .wrapper {
   padding: 39px 120px;
+
+  @media (max-width: 1000px) {
+    padding: 15px 60px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 10px 20px;
+  }
 }
 
 .searchWrapper {
   flex: 0 0 1;
   width: 500px;
+
+  @media (max-width: 1000px) {
+    max-width: 500px;
+  }
 }
 
 .sortWrapper {
@@ -33,6 +45,10 @@
   padding: 20px;
   background-color: $white;
   border-radius: 5px;
+
+  @media (max-width: 1000px) {
+    column-gap: 10px;
+  }
 }
 
 .cardsWrapper {
@@ -40,6 +56,18 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 17px 39px;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .productLink {

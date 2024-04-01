@@ -4,16 +4,12 @@ import React, { useState } from "react";
 import styles from "./profile.module.scss";
 import userLogo from "@/public/img/user-demo-logo.jpeg";
 import Image from "next/image";
-import { tabsNames } from "@/src/constants/staticData";
-import SVGDashboardSolid from "@/public/img/svg/dashboardSolid";
 import SVGOrderSolid from "@/public/img/svg/ordersSolid";
 import SVGProfileSolid from "@/public/img/svg/profileSolid";
-import SVGCommentSolid from "@/public/img/svg/commentSolid";
 import SVGQuestionSolid from "@/public/img/svg/questionSolid";
 import Dashboards from "./components/dashboards";
 import Orders from "./components/orders";
 import Info from "./components/info";
-import Comments from "./components/comments";
 import Link from "next/link";
 import { useGetProfileQuery } from "@/src/redux/services/profile";
 import Loader from "@/src/components/loader";
@@ -93,7 +89,7 @@ const ProfileContent = ({ pageData }: IProfileContentProps) => {
                     <div className={styles.tabIcon}>
                       {profileTabs[idx].icon}
                     </div>
-                    <div>{el}</div>
+                    <div className={styles.tabText}>{el}</div>
                   </li>
                 ))}
               </ul>

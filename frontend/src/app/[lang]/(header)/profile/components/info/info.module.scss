@@ -4,6 +4,15 @@
   padding: 23px 63px 96px;
   display: flex;
   gap: 66px;
+
+  @media (max-width: 1400px) {
+    padding: 10px 30px 45px;
+    gap: 20px;
+  }
+
+  @media (max-width: 1250px) {
+    flex-direction: column;
+  }
 }
 
 .photoUpload {
@@ -20,6 +29,11 @@
   align-items: center;
   width: fit-content;
   gap: 12px;
+
+  @media (max-width: 1250px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .uploadText {
@@ -38,4 +52,8 @@
 .inputsRow {
   display: flex;
   gap: 30px;
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+  }
 }

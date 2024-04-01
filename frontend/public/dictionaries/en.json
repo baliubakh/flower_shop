@@ -103,7 +103,8 @@
   },
   "productItem": {
     "addToCart": "Add to cart",
-    "morePhotos": "More photos"
+    "morePhotos": "More photos",
+    "each": "each"
   },
   "productCard": {
     "in": "In cart",
