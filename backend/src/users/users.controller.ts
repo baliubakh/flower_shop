@@ -3,9 +3,9 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
+  // HttpStatus,
   NotFoundException,
-  ParseFilePipeBuilder,
+  // ParseFilePipeBuilder,
   Patch,
   Post,
   Request,
@@ -13,8 +13,8 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
-  UsePipes,
-  ValidationPipe,
+  // UsePipes,
+  // ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -119,38 +119,24 @@ export class UsersController {
 
     return user;
   }
-  @UsePipes(new ValidationPipe({ transform: true }))
   @UseGuards(AccessTokenGuard)
   @Patch('/updateMe')
   @UseInterceptors(FileInterceptor('photo'))
   async updateUser(
     @Request() req,
     @Body() body: UpdateUserDto,
-    @UploadedFile(
-      new ParseFilePipeBuilder()
-        .addFileTypeValidator({
-          fileType: '.(png|jpeg|jpg)',
-        })
-        .addMaxSizeValidator({
-          maxSize: 5 * 1000 * 1000,
-        })
-        .build({
-          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-        }),
-    )
-    @UploadedFile()
-    file: Express.Multer.File,
+    @UploadedFile() file: Express.Multer.File,
   ): Promise<Partial<User>> {
     const prevUserData = await this.usersService.findOne(req.user.sub);
 
     if (!prevUserData) throw new NotFoundException('user not found');
 
-    if (prevUserData.photo) {
+    let photo = prevUserData.photo;
+    if (prevUserData.photo && file) {
       const key = prevUserData.photo.split('/')[4];
 
       this.s3Service.deleteFile(`users/${key}`);
     }
-    let photo = '';
     if (file) {
       const key = `users/${uuidv4()}`;
       photo = await this.s3Service.uploadFile(file, key);

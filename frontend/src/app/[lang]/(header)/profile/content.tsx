@@ -22,10 +22,10 @@ import { IProfile } from "@/src/types";
 type profileTab = "dashboard" | "orders" | "info" | "comments";
 
 const profileTabs = [
-  { id: 1, name: "dashboard", icon: <SVGDashboardSolid /> },
+  // { id: 1, name: "dashboard", icon: <SVGDashboardSolid /> },
   { id: 2, name: "orders", icon: <SVGOrderSolid /> },
   { id: 3, name: "info", icon: <SVGProfileSolid /> },
-  { id: 4, name: "comments", icon: <SVGCommentSolid /> },
+  // { id: 4, name: "comments", icon: <SVGCommentSolid /> },
 ];
 
 interface IProfileContentProps {

@@ -31,7 +31,7 @@ const HeaderIcons = ({ userData, lang }: IHeaderIconsProps) => {
 
   return (
     <div className={styles.iconsWrapper}>
-      {userData.role === "admin" && (
+      {userData && userData.role === "admin" && (
         <div className={styles.profileIconWrapper}>
           <Link href={`/${lang}/admin`}>
             <SVGAdminPanel />

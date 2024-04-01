@@ -74,7 +74,11 @@
   color: $brand-color-1;
 }
 
-.signoutIconWrapper {
+.signIconWrapper {
   width: 29px;
   cursor: pointer;
+
+  & > a {
+    color: inherit;
+  }
 }
