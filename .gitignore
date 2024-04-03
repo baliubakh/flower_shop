@@ -37,5 +37,6 @@ lerna-debug.log*
 **/package-lock.json
 **/dist
 **/.env
+**/.env.**
 
 **/migrations
